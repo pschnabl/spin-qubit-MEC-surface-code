@@ -39,7 +39,7 @@ This repository includes the Stim circuits used to simulate the performance of S
 <!-- CONTACT -->
 ## Contact
 
-* _Ruben Otxoa_ - ro274@cam.ac.uk
+* _Rubén Otxoa_ - ro274@cam.ac.uk
 * _Josu Etxezarreta Martinez_ - [@katutxakur](https://x.com/katutxakur) - jetxezarreta@unav.es
 * _Paul Schnabl_ - [@pjschna](https://x.com/pjschna) - pjschnabl@gmail.com
 
