@@ -44,7 +44,7 @@ This repository include the Stim circuits used to simulate the perfromance of Su
 * _Paul Schnabl_ - [@pjschna](https://x.com/pjschna) - pjschnabl@gmail.com
 
 
-Project Link: [https://github.com/Ademartio/BPOTF](https://github.com/pschnabl/spin-qubit-MEC-surface-code)
+Project Link: [https://github.com/pschnabl/spin-qubit-MEC-surface-code](https://github.com/pschnabl/spin-qubit-MEC-surface-code)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
