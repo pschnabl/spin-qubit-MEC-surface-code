@@ -72,7 +72,7 @@ The figures from the visualize_circuits file have been borrowed from:
 Please cite the following article if you use our circuits:
 ```
 @article{spinSC2024,
-    author = "{Otxoa}, Ruben M. and {Etxezarreta Martinez}, Josu and Schnabl, Paul and {Mertig}, Normann and {Smith}, Charles and {Martins}, Frederico",
+    author = "{Otxoa}, Ruben M. and {Etxezarreta Martinez}, Josu and {Schnabl}, Paul and {Mertig}, Normann and {Smith}, Charles and {Martins}, Frederico",
     title = "{2D Spin-Qubit Architecture with Multi-Electron Couplers for Surface Error Correcting Code}",
     journal = {arXiv},
     pages = {},
