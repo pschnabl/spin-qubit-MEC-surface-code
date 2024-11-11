@@ -29,7 +29,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This repository include the Stim circuits used to simulate the perfromance of Surface Codes (CSS and XZZX) over a 2D spin qubit based architecture with Multi Electron Couplers (MEC). It includes the Stim circuits containing the error model considered for such architecture, inlcuding errors arising from the SWAPs used to increase the spacing between data and check qubits. The files containing the obtained results for the plots presented in the paper are also accessible.
+This repository includes the Stim circuits used to simulate the perfromance of Surface Codes (CSS and XZZX) over a 2D spin qubit based architecture with Multi Electron Couplers (MEC). It includes the Stim circuits containing the error model considered for such architecture, inlcuding errors arising from the SWAPs used to increase the spacing between data and check qubits. The files containing the obtained results for the plots presented in the paper are also accessible.
 
 <!-- Add more info here... -->
 
