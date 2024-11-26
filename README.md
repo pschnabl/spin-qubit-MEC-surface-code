@@ -39,9 +39,10 @@ This repository includes the Stim circuits used to simulate the performance of S
 <!-- CONTACT -->
 ## Contact
 
-* _Rubén Otxoa_ - ro274@cam.ac.uk
-* _Josu Etxezarreta Martinez_ - [@katutxakur](https://x.com/katutxakur) - jetxezarreta@unav.es
 * _Paul Schnabl_ - [@pjschna](https://x.com/pjschna) - pjschnabl@gmail.com
+* _Josu Etxezarreta Martinez_ - [@katutxakur](https://x.com/katutxakur) - jetxezarreta@unav.es
+* _Rubén Otxoa_ - ro274@cam.ac.uk
+
 
 
 Project Link: [https://github.com/pschnabl/spin-qubit-MEC-surface-code](https://github.com/pschnabl/spin-qubit-MEC-surface-code)
