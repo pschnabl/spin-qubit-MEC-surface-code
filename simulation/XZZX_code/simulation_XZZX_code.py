@@ -30,7 +30,7 @@ def generate_example_tasks(is_memory_H=False):
                                                     after_reset_flip_probability = 3*p,
                                                     after_clifford2_depolarization=p,                                    
                                                     pswap_depolarization= p/10,
-                                                    nswaps=20,
+                                                    nswaps=3,
                                                 )
                 circuit = create_rotated_XZZX_surface_code_architecture(params, is_memory_H=is_memory_H)
                 
