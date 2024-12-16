@@ -14,9 +14,9 @@ Rotated XZZX surface code simulation for the spin qubit architecture with MEC.
 
 # Generates surface code circuit tasks using Stim's circuit generation.
 def generate_example_tasks(is_memory_H=False):
-    etas = [100]#0.5, 1, 10, 100, 1000, 10000]
+    etas = [0.5, 1, 10, 100, 1000, 10000]
     probabilities = [0.001, 0.002, 0.003]
-    distances = [5, 7, 9, 11, 13, 15, 17]
+    distances = [5, 9, 13, 17]
     for eta in etas:   
         for p in probabilities:
             for d in distances:            
@@ -29,8 +29,8 @@ def generate_example_tasks(is_memory_H=False):
                                                     before_measure_flip_probability = 7*p,
                                                     after_reset_flip_probability = 3*p,
                                                     after_clifford2_depolarization=p,                                    
-                                                    pswap_depolarization= p,
-                                                    nswaps=3,
+                                                    pswap_depolarization= p/10,
+                                                    nswaps=20,
                                                 )
                 circuit = create_rotated_XZZX_surface_code_architecture(params, is_memory_H=is_memory_H)
                 
@@ -47,12 +47,12 @@ def generate_example_tasks(is_memory_H=False):
                         )               
 
 def main():
-    filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "TestSimulation")
+    filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "XZZXArchitecture3Swaps_p10_Teraquop")
     # Collect the samples (takes a few minutes).
     samples = sinter.collect(
         num_workers=multiprocessing.cpu_count()-1,
-        max_shots=200_000_000,
-        max_errors=200000,
+        max_shots=100_000_000,
+        max_errors=300000,
         tasks=[task for task in generate_example_tasks(is_memory_H=False)] + [task for task in generate_example_tasks(is_memory_H=True)],
         decoders=["pymatching"],
         #count_detection_events=True,

@@ -50,8 +50,8 @@ def plot_stats(stats: List[sinter.TaskStats], ax=None, logical_error_per_round=F
     ax.loglog()
     ax.grid()
     ax.set_title('Logical Error Rate vs Physical Error Rate')
-    ax.set_ylabel('$p_L$' + [' (per shot)', ' (per round)'][logical_error_per_round])
-    ax.set_xlabel('Physical Error Rate')
+    ax.set_ylabel('$p_L$' + [' (per shot)', ' (per round)'][logical_error_per_round],fontname='Arial')
+    ax.set_xlabel('Physical Error Rate',fontname='Arial')
     ax.legend(prop={'size': 12})
     
 
@@ -105,7 +105,7 @@ def estimate_threshold(task_stats_list: list[TaskStats], logical_error_per_round
     return estimated_threshold
 
 
-## for the biased noise model in https://journals.aps.org/prx/pdf/10.1103/PhysRevX.13.031007 the x-axis has to be rescaled
+
 def plot_stats_bias(stats: List[sinter.TaskStats], ax=None):
     def custom_plot_args_func(
         curve_index: int,  # a unique incrementing integer for each curve
@@ -150,8 +150,7 @@ def plot_stats_bias(stats: List[sinter.TaskStats], ax=None):
     ax.grid()
     ax.set_title('Logical Error Rate vs Physical Error Rate')
     ax.set_ylabel('Logical Error Probability (per shot)')
-    ax.set_xlabel(r'CNOT infidelity: $p \cdot (1/5 + 4/(5\eta))$') # pCX = p * (1/5 + 4/(5*eta)) see: https://journals.aps.org/prx/pdf/10.1103/PhysRevX.13.031007
-    ax.legend()
+    ax.set_xlabel(r'CNOT infidelity: $p \cdot (1/5 + 4/(5\eta))$')
 
 def extract_data_from_stats_bias(task_stats_list: list[TaskStats]) -> list[tuple[int, float, float]]:
     """
