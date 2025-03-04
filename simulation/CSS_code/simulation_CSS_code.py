@@ -14,11 +14,8 @@ Rotated surface code simulation over proposed spin qubit architecture
 
 # Generates surface code circuit tasks using Stim's circuit generation.
 def generate_example_tasks(is_memory_x=False):
-    etas = [0.5, 1, 10, 100, 1000, 10000]
-    if is_memory_x:
-        probabilities = list(np.round(np.arange(0.003, 0.0051, 0.0001), 6))
-    else:
-        probabilities = list(np.round(np.arange(0.003, 0.0051, 0.0001), 6))
+    etas = [100]
+    probabilities = [0.0018,0.0019]
     distances = [5, 9, 13, 17]
     for eta in etas:   
         for p in probabilities:
@@ -29,12 +26,11 @@ def generate_example_tasks(is_memory_x=False):
                                                     distance=d,
                                                     after_clifford1_depolarization = p/10,
                                                     before_round_data_bias_probability= (p/10, eta),
-                                                    before_measure_flip_probability = 7*p,
-                                                    after_reset_flip_probability = 3*p,
+                                                    before_measure_flip_probability = 2*p,
+                                                    after_reset_flip_probability = 2*p,
                                                     after_clifford2_depolarization=p,
-                                                    pswap_depolarization= p/10,
-                                                    nswaps=3,
-                                                    exclude_other_basis_detectors = False
+                                                    pswap_depolarization= 0.8*p,
+                                                    nswaps=(3,2), # (Ny,Nx) in the main text, defines the swaps of checks and datas (per 2 qubit gate)
                                                 )
                 circuit = create_rotated_surface_code_CSS_architecture(params, is_memory_x=is_memory_x)
                 
@@ -51,12 +47,12 @@ def generate_example_tasks(is_memory_x=False):
                         )               
 
 def main():
-    filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test")
+    filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "CSSRotatedThresh_23")
     # Collect the samples (takes a few minutes).
     samples = sinter.collect(
         num_workers=multiprocessing.cpu_count()-1,
         max_shots=200_000_000,
-        max_errors=100000,
+        max_errors=200000,
         tasks=[task for task in generate_example_tasks(is_memory_x=False)] + [task for task in generate_example_tasks(is_memory_x=True)],
         decoders=["pymatching"],
         #count_detection_events=True,

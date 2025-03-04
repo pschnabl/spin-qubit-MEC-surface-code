@@ -14,23 +14,23 @@ Rotated XZZX surface code simulation for the spin qubit architecture with MEC.
 
 # Generates surface code circuit tasks using Stim's circuit generation.
 def generate_example_tasks(is_memory_H=False):
-    etas = [0.5, 1, 10, 100, 1000, 10000]
-    probabilities = [0.001, 0.002, 0.003]
-    distances = [5, 9, 13, 17]
+    etas = [100]#, 1, 10, 100, 1000, 10000]
+    probabilities = [0.0001,0.0005,0.001]
+    distances = [5,7,9,11,13]
     for eta in etas:   
         for p in probabilities:
             for d in distances:            
-                rounds = 3*d     
+                rounds = 3 * d     
                 params = CircuitGenParametersXZZX(
                                                     rounds=rounds,
                                                     distance=d,
                                                     after_clifford1_depolarization = p/10,
                                                     before_round_data_bias_probability= (p/10, eta),
-                                                    before_measure_flip_probability = 7*p,
-                                                    after_reset_flip_probability = 3*p,
+                                                    before_measure_flip_probability = 2 * p,
+                                                    after_reset_flip_probability =  2 * p,
                                                     after_clifford2_depolarization=p,                                    
-                                                    pswap_depolarization= p/10,
-                                                    nswaps=3,
+                                                    pswap_depolarization= 0.8*p,
+                                                    nswaps=(3,2), # (Ny,Nx) in the main text, defines the swaps of checks and datas (per 2 qubit gate)
                                                 )
                 circuit = create_rotated_XZZX_surface_code_architecture(params, is_memory_H=is_memory_H)
                 
@@ -47,12 +47,12 @@ def generate_example_tasks(is_memory_H=False):
                         )               
 
 def main():
-    filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "XZZXArchitecture3Swaps_p10_Teraquop")
+    filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "FootprintSwap08_p_32")
     # Collect the samples (takes a few minutes).
     samples = sinter.collect(
         num_workers=multiprocessing.cpu_count()-1,
-        max_shots=100_000_000,
-        max_errors=300000,
+        max_shots=20_000_000_000,
+        max_errors=100000,
         tasks=[task for task in generate_example_tasks(is_memory_H=False)] + [task for task in generate_example_tasks(is_memory_H=True)],
         decoders=["pymatching"],
         #count_detection_events=True,

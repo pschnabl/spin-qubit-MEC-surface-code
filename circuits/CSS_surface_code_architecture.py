@@ -82,7 +82,7 @@ class CircuitGenParametersCSS():
     exclude_other_basis_detectors: bool = False
     after_clifford2_depolarization: float = 0 # this is for the two qubit gates
     pswap_depolarization: float = 0 # error for swapping the qubits
-    nswaps: int = 0 # number of swaps in proposed architecture
+    nswaps: tuple = (0, 0) # (Ny,Nx) in the main text, defines the swaps of checks and datas (per 2 qubit gate)
         
 def create_rotated_surface_code_CSS_architecture(params: CircuitGenParametersCSS,
                                 is_memory_x: bool = False,
@@ -157,8 +157,10 @@ def create_rotated_surface_code_CSS_architecture(params: CircuitGenParametersCSS
         # Add swap errors to the data and check qubits involved in the cnots, the rest will
         # idling in such step (Get them close)
         if params.pswap_depolarization > 0:
-            for jj in range(params.nswaps):
-                cycle_actions.append("DEPOLARIZE1", targets, params.pswap_depolarization)
+            for jj in range(params.nswaps[0]):
+                cycle_actions.append("DEPOLARIZE1", list(set(targets) & set(measurement_qubits)) , params.pswap_depolarization)
+            for jj in range(params.nswaps[1]):
+                cycle_actions.append("DEPOLARIZE1", list(set(targets) & set(data_qubits)) , params.pswap_depolarization)
                 # Idling errors to unused checks while swaps occur (taylor for same as swap)
                 if params.before_round_data_bias_probability[0] > 0:
                     # We consider that for noisier operations related with longer times the idling should be higher
@@ -194,8 +196,10 @@ def create_rotated_surface_code_CSS_architecture(params: CircuitGenParametersCSS
         # Add swap errors to the data and check qubits involved in the cnots, the rest will
         # idling in such step (back to original position)
         if params.pswap_depolarization > 0:
-            for jj in range(params.nswaps):
-                cycle_actions.append("DEPOLARIZE1", targets, params.pswap_depolarization)
+            for jj in range(params.nswaps[0]):
+                cycle_actions.append("DEPOLARIZE1", list(set(targets) & set(measurement_qubits)) , params.pswap_depolarization)
+            for jj in range(params.nswaps[1]):
+                cycle_actions.append("DEPOLARIZE1", list(set(targets) & set(data_qubits)) , params.pswap_depolarization)
                 # Idling errors to unused checks while swaps occur (taylor for same as swap)
                 if params.before_round_data_bias_probability[0] > 0:
                     # We consider that for noisier operations related with longer times the idling should be higher
@@ -282,8 +286,10 @@ def create_rotated_surface_code_CSS_architecture(params: CircuitGenParametersCSS
         # Add swap errors to the data and check qubits involved in the cnots, the rest will
         # idling in such step (Get them close)
         if params.pswap_depolarization > 0:
-            for jj in range(params.nswaps):
-                head.append("DEPOLARIZE1", targets, params.pswap_depolarization)
+            for jj in range(params.nswaps[0]):
+                head.append("DEPOLARIZE1", list(set(targets) & set(measurement_qubits)) , params.pswap_depolarization)
+            for jj in range(params.nswaps[1]):
+                head.append("DEPOLARIZE1", list(set(targets) & set(data_qubits)) , params.pswap_depolarization)
                 # Idling errors to unused checks while swaps occur (taylor for same as swap)
                 if params.before_round_data_bias_probability[0] > 0:
                     # We consider that for noisier operations related with longer times the idling should be higher
@@ -319,8 +325,10 @@ def create_rotated_surface_code_CSS_architecture(params: CircuitGenParametersCSS
         # Add swap errors to the data and check qubits involved in the cnots, the rest will
         # idling in such step (Get them back to OG position)
         if params.pswap_depolarization > 0:
-            for jj in range(params.nswaps):
-                head.append("DEPOLARIZE1", targets, params.pswap_depolarization)
+            for jj in range(params.nswaps[0]):
+                head.append("DEPOLARIZE1", list(set(targets) & set(measurement_qubits)) , params.pswap_depolarization)
+            for jj in range(params.nswaps[1]):
+                head.append("DEPOLARIZE1", list(set(targets) & set(data_qubits)) , params.pswap_depolarization)
                 # Idling errors to unused checks while swaps occur (taylor for same as swap)
                 if params.before_round_data_bias_probability[0] > 0:
                     # We consider that for noisier operations related with longer times the idling should be higher
@@ -431,8 +439,10 @@ def create_rotated_surface_code_CSS_architecture(params: CircuitGenParametersCSS
         # Add swap errors to the data and check qubits involved in the cnots, the rest will
         # idling in such step (Get them close)
         if params.pswap_depolarization > 0:
-            for jj in range(params.nswaps):
-                tail.append("DEPOLARIZE1", targets, params.pswap_depolarization)
+            for jj in range(params.nswaps[0]):
+                tail.append("DEPOLARIZE1", list(set(targets) & set(measurement_qubits)) , params.pswap_depolarization)
+            for jj in range(params.nswaps[1]):
+                tail.append("DEPOLARIZE1", list(set(targets) & set(data_qubits)) , params.pswap_depolarization)
                 # Idling errors to unused checks while swaps occur (taylor for same as swap)
                 if params.before_round_data_bias_probability[0] > 0:
                     # We consider that for noisier operations related with longer times the idling should be higher
@@ -468,8 +478,10 @@ def create_rotated_surface_code_CSS_architecture(params: CircuitGenParametersCSS
         # Add swap errors to the data and check qubits involved in the cnots, the rest will
         # idling in such step (Get them back to OG position)
         if params.pswap_depolarization > 0:
-            for jj in range(params.nswaps):
-                tail.append("DEPOLARIZE1", targets, params.pswap_depolarization)
+            for jj in range(params.nswaps[0]):
+                tail.append("DEPOLARIZE1", list(set(targets) & set(measurement_qubits)) , params.pswap_depolarization)
+            for jj in range(params.nswaps[1]):
+                tail.append("DEPOLARIZE1", list(set(targets) & set(data_qubits)) , params.pswap_depolarization)
                 # Idling errors to unused checks while swaps occur (taylor for same as swap)
                 if params.before_round_data_bias_probability[0] > 0:
                     # We consider that for noisier operations related with longer times the idling should be higher
