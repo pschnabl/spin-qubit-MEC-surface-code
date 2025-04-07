@@ -79,7 +79,7 @@ Please cite the following article if you use our circuits:
     pages = {arXiv:2504.03149},
     archivePrefix = "arXiv",
     primaryClass = "quant-ph",
-    month = nov,
+    month = apr,
     year = {2025},
     url ={https://arxiv.org/abs/2504.03149}
 }
