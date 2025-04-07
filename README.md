@@ -72,16 +72,16 @@ The figures from the visualize_circuits file have been borrowed from:
 ## Attribution
 Please cite the following article if you use our circuits:
 ```
-@article{spinSC2024,
+@article{spinSC2025,
     author = "{Otxoa}, Ruben M. and {Etxezarreta Martinez}, Josu and {Schnabl}, Paul and {Mertig}, Normann and {Smith}, Charles and {Martins}, Frederico",
-    title = "{2D Spin-Qubit Architecture with Multi-Electron Couplers for Surface Error Correcting Code}",
+    title = "{SpinHex: A low-crosstalk, spin-qubit architecture based on multi-electron couplers}",
     journal = {arXiv},
-    pages = {},
+    pages = {arXiv:2504.03149},
     archivePrefix = "arXiv",
     primaryClass = "quant-ph",
     month = nov,
-    year = {2024},
-    url ={}
+    year = {2025},
+    url ={https://arxiv.org/abs/2504.03149}
 }
 ```
 
